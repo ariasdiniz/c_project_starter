@@ -1,0 +1,28 @@
+# Ignore compiled binaries
+*.exe
+*.out
+*.o
+*.a
+*.so
+*.dll
+
+# Ignore generated files
+*.dSYM/
+*.swp
+*~
+
+# Ignore editor-specific files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Ignore build directories
+/build/
+/bin/
+
+#Ignore cmake build files
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
