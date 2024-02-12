@@ -6,6 +6,7 @@
   #include <stdio.h>
   #include <stdlib.h>
   #include <string.h>
+  #include <stdarg.h>
   #include "../lib/argument_parser/argument_parser.h"
 
   #define HELP "This is the C Project Starter.\n"\
@@ -87,6 +88,22 @@ static void make_dir(char *dir_name, struct stat *st) {
   }
 }
 
+static void make_file(char *dir_name, char *file_name, char *content, ...) {
+  va_list args;
+  va_start(args, content);
+  char buffer[100];
+  sprintf(buffer, "%s/%s", dir_name, file_name);
+  printf("Generating %s...\n", buffer);
+  FILE *file = fopen(buffer, "w");
+  if (file == NULL) {
+    printf("Error creating file %s!\n", buffer);
+    exit(1);
+  }
+  vfprintf(file, content, args);
+  fclose(file);
+  va_end(args);
+}
+
 int main(int argc, char* argv[]) {
   if (argc == 1) {
     printf("This software needs the --name or --help param to run.\n");
@@ -127,23 +144,9 @@ int main(int argc, char* argv[]) {
   sprintf(buffer, "%s/%s", name, "include");
   make_dir(buffer, &st);
 
-  printf("Generating CMakeLists.txt...\n");
-  sprintf(buffer, "%s/%s", name, "CMakeLists.txt");
-  FILE *cmake = fopen(buffer, "w");
-  fprintf(cmake, CMAKE, name, cversion, name, name);
-  fclose(cmake);
-
-  printf("Generating .gitignore...\n");
-  sprintf(buffer, "%s/%s", name, ".gitignore");
-  FILE *git = fopen(buffer, "w");
-  fprintf(git, GITIGNORE);
-  fclose(git);
-
-  printf("Generating main.h...\n");
-  sprintf(buffer, "%s/%s", name, "main.c");
-  FILE *main = fopen(buffer, "w");
-  fprintf(main, MAIN);
-  fclose(main);
+  make_file(name, "CMakeLists.txt", CMAKE, name, cversion, name, name);
+  make_file(name, ".gitignore", GITIGNORE);
+  make_file(name, "main.c", MAIN);
 
   printf("Process finished with success!\n");
 
