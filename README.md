@@ -49,10 +49,10 @@ To use the C Project Generator, follow these simple steps:
 2. Run the following command to generate a new C project:
 
 ```bash
-cgen --name your_project_name
+cgen --name your_project_name -c 99
 ```
 
-Replace `your_project_name` with the desired name for your project.
+Replace `your_project_name` with the desired name for your project and `99` with the C version you want.
 
 3. Once the command is executed, a new folder will be created in the current directory with the specified project name. Inside this folder, you will find the following files and folders:
 

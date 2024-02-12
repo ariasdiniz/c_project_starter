@@ -13,7 +13,8 @@
                "Use this tool to generate a new folder with a simple \n"\
                "structure for a new C project.\n\n"\
                "Params: --name: name of the project.\n"\
-               "Example: cgen --name my_project\n"
+               "        -c:     version of the C language. Defaults to 99.\n\n"\
+               "Example: cgen --name my_project -c 23\n"
 
   #define MAIN "int main(int argc, char *argv[]) {\n"\
                "  return 0;\n"\
@@ -40,6 +41,35 @@
                 "include_directories(src)\n"\
                 "include_directories(lib)\n"\
                 "include_directories(include)\n"\
+  
+  #define GITIGNORE "# Ignore compiled binaries\n"\
+                    "*.exe\n"\
+                    "*.out\n"\
+                    "*.o\n"\
+                    "*.a\n"\
+                    "*.so\n"\
+                    "*.dll\n"\
+                    "\n"\
+                    "# Ignore generated files\n"\
+                    "*.dSYM/\n"\
+                    "*.swp\n"\
+                    "*~\n"\
+                    "\n"\
+                    "# Ignore editor-specific files\n"\
+                    ".vscode/\n"\
+                    ".idea/\n"\
+                    "*.sublime-project\n"\
+                    "*.sublime-workspace\n"\
+                    "\n"\
+                    "# Ignore build directories\n"\
+                    "/build/\n"\
+                    "/bin/\n"\
+                    "\n"\
+                    "#Ignore cmake build files\n"\
+                    "CMakeCache.txt\n"\
+                    "CMakeFiles/\n"\
+                    "cmake_install.cmake\n"\
+                    "Makefile\n"
 
 #endif
 
@@ -61,6 +91,11 @@ int main(int argc, char* argv[]) {
     deletehash(args);
     printf(HELP);
     exit(0);
+  }
+
+  char *cversion = "99";
+  if (strcmp(getfromhash(args, "-c"), "\0")) {
+    cversion = getfromhash(args, "-c");
   }
 
   struct stat st = {0};
