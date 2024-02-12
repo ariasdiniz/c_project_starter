@@ -2,6 +2,8 @@
 
 The C Project Generator is a command-line tool designed to streamline the process of starting new C projects. With just a few simple commands, you can create a basic project structure, complete with necessary files and folders.
 
+**For now, this project is compatible only with UNIX based operational systems**
+
 ## Prerequisites
 
 - CMake
