@@ -10,16 +10,28 @@ The C Project Generator is a command-line tool designed to streamline the proces
 
 ## Installation
 
+### Easy Way
+
+Just run the install script:
+
+```bash
+bash install.sh
+```
+
+**Be sure that the `~/.local/bin/` dir is in your PATH!**
+
+### Manual Way
+
 1. Clone the repository to your local machine:
 
 ```bash
-git clone https://github.com/your_username/c-project-generator.git
+git clone https://github.com/ariasdiniz/c_project_starter.git
 ```
 
 2. Navigate to the project directory:
 
 ```bash
-cd c-project-generator
+cd c_project_starter_
 ```
 
 3. Build the project using CMake:
@@ -37,7 +49,7 @@ make
 5. (Optional) Add the executable to your system PATH for easier access:
 
 ```bash
-sudo cp cgen /usr/local/bin
+cp cgen ~/.local/bin
 ```
 
 ## Usage
