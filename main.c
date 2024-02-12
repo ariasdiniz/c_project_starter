@@ -140,6 +140,8 @@ int main(int argc, char* argv[]) {
   fprintf(main, MAIN);
   fclose(main);
 
+  printf("Process finished with success!\n");
+
   deletehash(args);
   return 0;
 }

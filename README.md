@@ -31,7 +31,7 @@ git clone git@github.com:ariasdiniz/c_project_starter.git
 2. Navigate to the project directory:
 
 ```bash
-cd c_project_starter_
+cd c_project_starter
 ```
 
 3. Build the project using CMake:
