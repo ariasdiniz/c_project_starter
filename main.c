@@ -20,7 +20,7 @@
                "  return 0;\n"\
                "}\n"
 
-#define CMAKE "cmake_minimum_required(VERSION 3.15)\n"\
+  #define CMAKE "cmake_minimum_required(VERSION 3.15)\n"\
                 "\n"\
                 "project(%s)\n"\
                 "\n"\
