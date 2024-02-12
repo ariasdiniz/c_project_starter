@@ -123,7 +123,7 @@ int main(int argc, char* argv[]) {
   make_dir(buffer, &st);
 
   printf("Generating CMakeLists.txt...\n");
-  sprintf(buffer, "%s/%s", name, "CMakeFiles.txt");
+  sprintf(buffer, "%s/%s", name, "CMakeLists.txt");
   FILE *cmake = fopen(buffer, "w");
   fprintf(cmake, CMAKE, name, cversion, name);
   fclose(cmake);
