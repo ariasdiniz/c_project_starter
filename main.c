@@ -20,12 +20,12 @@
                "  return 0;\n"\
                "}\n"
 
-  #define CMAKE "cmake_minimum_required(VERSION 3.15)\n"\
+#define CMAKE "cmake_minimum_required(VERSION 3.15)\n"\
                 "\n"\
                 "project(%s)\n"\
                 "\n"\
                 "set(CMAKE_C_STANDARD %s)\n"\
-                "set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O3")\n"\
+                "set(CMAKE_C_FLAGS \"${CMAKE_C_FLAGS} -O3\")\n"\
                 "\n"\
                 "file(GLOB_RECURSE SOURCE \"src/*.c\" \"src/*.h\")\n"\
                 "file(GLOB_RECURSE LIB \"src/*.c\" \"src/*.h\")\n"\
@@ -40,7 +40,7 @@
                 "\n"\
                 "include_directories(src)\n"\
                 "include_directories(lib)\n"\
-                "include_directories(include)\n"\
+                "include_directories(include)\n"
   
   #define GITIGNORE "# Ignore compiled binaries\n"\
                     "*.exe\n"\
@@ -76,6 +76,9 @@
 static void make_dir(char *dir_name, struct stat *st) {
   if (stat(dir_name, st) == -1) {
     mkdir(dir_name, 0755);
+  } else {
+    printf("Directory with name %s already exists!\n", dir_name);
+    exit(1);
   }
 }
 
@@ -93,12 +96,49 @@ int main(int argc, char* argv[]) {
     exit(0);
   }
 
+  char *name = getfromhash(args, "--name");
+  if (strcmp(name, "\0") == 0 || strcmp(name, "--name") == 0) {
+    printf("This software needs the --name param to run.\n");
+    exit(1);
+  }
+
   char *cversion = "99";
   if (strcmp(getfromhash(args, "-c"), "\0")) {
     cversion = getfromhash(args, "-c");
   }
 
   struct stat st = {0};
+  char buffer[100];
+
+  printf("Creating project directories...\n");
+  make_dir(name, &st);
+
+  sprintf(buffer, "%s/%s", name, "src");
+  make_dir(buffer, &st);
+
+  sprintf(buffer, "%s/%s", name, "lib");
+  make_dir(buffer, &st);
+
+  sprintf(buffer, "%s/%s", name, "include");
+  make_dir(buffer, &st);
+
+  printf("Generating CMakeLists.txt...\n");
+  sprintf(buffer, "%s/%s", name, "CMakeFiles.txt");
+  FILE *cmake = fopen(buffer, "w");
+  fprintf(cmake, CMAKE, name, cversion, name);
+  fclose(cmake);
+
+  printf("Generating .gitignore...\n");
+  sprintf(buffer, "%s/%s", name, ".gitignore");
+  FILE *git = fopen(buffer, "w");
+  fprintf(git, GITIGNORE);
+  fclose(git);
+
+  printf("Generating main.h...\n");
+  sprintf(buffer, "%s/%s", name, "main.c");
+  FILE *main = fopen(buffer, "w");
+  fprintf(main, MAIN);
+  fclose(main);
 
   deletehash(args);
   return 0;
