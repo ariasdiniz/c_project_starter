@@ -1,6 +1,6 @@
-# C Project Generator
+# C Project Starter
 
-The C Project Generator is a command-line tool designed to streamline the process of starting new C projects. With just a few simple commands, you can create a basic project structure, complete with necessary files and folders.
+The C Project Starter is a command-line tool designed to streamline the process of starting new C projects. With just a few simple commands, you can create a basic project structure, complete with necessary files and folders.
 
 **For now, this project is compatible only with UNIX based operational systems**
 
@@ -56,7 +56,7 @@ cp cgen ~/.local/bin
 
 ## Usage
 
-To use the C Project Generator, follow these simple steps:
+To use the C Project Starter, follow these simple steps:
 
 1. Open a terminal window.
 
@@ -79,7 +79,7 @@ Replace `your_project_name` with the desired name for your project and `99` with
 
 ## Contributing
 
-If you encounter any issues with the C Project Generator or have suggestions for improvements, please feel free to open an issue or submit a pull request on GitHub.
+If you encounter any issues with the C Project Starter or have suggestions for improvements, please feel free to open an issue or submit a pull request on GitHub.
 
 ## License
 
