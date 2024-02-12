@@ -16,7 +16,10 @@
                "        -c:     version of the C language. Defaults to 99.\n\n"\
                "Example: cgen --name my_project -c 23\n"
 
-  #define MAIN "int main(int argc, char *argv[]) {\n"\
+  #define MAIN "#include <stdio.h>\n"\
+               "\n"\
+               "int main(int argc, char *argv[]) {\n"\
+               "  printf(\"Hello World!\\n\");\n"\
                "  return 0;\n"\
                "}\n"
 
@@ -27,20 +30,22 @@
                 "set(CMAKE_C_STANDARD %s)\n"\
                 "set(CMAKE_C_FLAGS \"${CMAKE_C_FLAGS} -O3\")\n"\
                 "\n"\
-                "file(GLOB_RECURSE SOURCE \"src/*.c\" \"src/*.h\")\n"\
-                "file(GLOB_RECURSE LIB \"src/*.c\" \"src/*.h\")\n"\
-                "file(GLOB_RECURSE INCLUDE \"src/*.c\" \"src/*.h\")\n"\
+                "set(SOURCE\n"\
+                "    main.c)\n"\
                 "\n"\
-                "add_executable(\n"\
-                                "%s\n"\
-                                "main.c\n"\
-                                "${SOURCE}\n"\
-                                "${LIB}\n"\
-                                "${INCLUDE})\n"\
+                "set(LIB\n"\
+                "   )\n"\
                 "\n"\
-                "include_directories(src)\n"\
-                "include_directories(lib)\n"\
-                "include_directories(include)\n"
+                "set(HEADER\n"\
+                "   )\n"\
+                "\n"\
+                "add_executable(%s\n"\
+                "               main.c\n"\
+                "               ${SOURCE}\n"\
+                "               ${LIB}\n"\
+                "               ${HEADER})\n"\
+                "\n"\
+                "target_include_directories(%s PUBLIC src lib include)\n"
   
   #define GITIGNORE "# Ignore compiled binaries\n"\
                     "*.exe\n"\
@@ -125,7 +130,7 @@ int main(int argc, char* argv[]) {
   printf("Generating CMakeLists.txt...\n");
   sprintf(buffer, "%s/%s", name, "CMakeLists.txt");
   FILE *cmake = fopen(buffer, "w");
-  fprintf(cmake, CMAKE, name, cversion, name);
+  fprintf(cmake, CMAKE, name, cversion, name, name);
   fclose(cmake);
 
   printf("Generating .gitignore...\n");
