@@ -1,5 +1,7 @@
 #if defined(_WIN32) || defined(_WIN64)
   #error "Windows is not supported by this software."
+#elif defined(__MACH__) || defined(__APPLE__)
+  #error "Apple platforms are not supported by this software."
 #else
   #include <sys/stat.h>
   #include <sys/types.h>

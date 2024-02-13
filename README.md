@@ -8,7 +8,7 @@ The C Project Starter is a command-line tool designed to streamline the process 
 
 - CMake
 - Make
-- Unix-based operating system
+- Linux-based operating system
 
 ## Installation
 
