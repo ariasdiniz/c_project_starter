@@ -20,7 +20,7 @@ echo "Build successful. Installing..."
 
 # Copying the binary to /usr/local/bin
 if [ ! -d ~/.local/bin ]; then
-    mkdir -p ~/local/bin
+    mkdir -p ~/.local/bin
     if [ $? != 0 ]; then
         echo "Failed to create /usr/local/bin. Exiting..."
         make clean

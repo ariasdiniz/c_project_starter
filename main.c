@@ -10,7 +10,7 @@
   #include "../lib/argument_parser/argument_parser.h"
 
   #define HELP "This is the C Project Starter.\n"\
-               "Developed by Aria Diniz. https://github.com/ariasdiniz\n"\
+               "Developed by Aria Diniz. https://github.com/ariasdiniz\n\n"\
                "Use this tool to generate a new folder with a simple \n"\
                "structure for a new C project.\n\n"\
                "Params: --name: name of the project.\n"\
