@@ -31,7 +31,7 @@
                 "project(%s)\n"\
                 "\n"\
                 "set(CMAKE_C_STANDARD %s)\n"\
-                "set(CMAKE_C_FLAGS \"${CMAKE_C_FLAGS} -O3\")\n"\
+                "set(CMAKE_C_FLAGS \"${CMAKE_C_FLAGS} -O3 -Wall\")\n"\
                 "\n"\
                 "set(SOURCE\n"\
                 "    main.c)\n"\
