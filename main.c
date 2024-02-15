@@ -33,14 +33,9 @@
                 "set(CMAKE_C_STANDARD %s)\n"\
                 "set(CMAKE_C_FLAGS \"${CMAKE_C_FLAGS} -O3 -Wall\")\n"\
                 "\n"\
-                "set(SOURCE\n"\
-                "    main.c)\n"\
-                "\n"\
-                "set(LIB\n"\
-                "   )\n"\
-                "\n"\
-                "set(HEADER\n"\
-                "   )\n"\
+                "file(GLOB_RECURSE SOURCE src/*.c src/*.h)\n"\
+                "file(GLOB_RECURSE LIB lib/*.c lib/*.h)\n"\
+                "file(GLOB_RECURSE HEADER include/*.c include/*.h)\n"\
                 "\n"\
                 "add_executable(%s\n"\
                 "               main.c\n"\
