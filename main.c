@@ -31,6 +31,13 @@
                 "project(%s)\n"\
                 "\n"\
                 "set(CMAKE_C_STANDARD %s)\n"\
+                "# set(LIBRARY_PATH ${CMAKE_CURRENT_SOURCE_DIR}/lib)\n"\
+                "# \n"\
+                "# find_library(LIBRARY_NAME\n"\
+                "# NAMES\n"\
+                "# PATHS ${LIBRARY_PATH}\n"\
+                "# REQUIRED\n"\
+                "# )\n"\
                 "set(CMAKE_C_FLAGS \"${CMAKE_C_FLAGS} -O3 -Wall\")\n"\
                 "\n"\
                 "file(GLOB_RECURSE SOURCE src/*.c src/*.h)\n"\
@@ -43,7 +50,8 @@
                 "               ${LIB}\n"\
                 "               ${HEADER})\n"\
                 "\n"\
-                "target_include_directories(%s PUBLIC src lib include)\n"
+                "target_include_directories(%s PUBLIC src lib include)\n"\
+                "# target_link_libraries(%s ${LIBRARY_NAME})\n"\
   
   #define GITIGNORE "# Ignore compiled binaries\n"\
                     "*.exe\n"\
@@ -141,7 +149,7 @@ int main(int argc, char* argv[]) {
   sprintf(buffer, "%s/%s", name, "include");
   make_dir(buffer, &st);
 
-  make_file(name, "CMakeLists.txt", CMAKE, name, cversion, name, name);
+  make_file(name, "CMakeLists.txt", CMAKE, name, cversion, name, name, name);
   make_file(name, ".gitignore", GITIGNORE);
   make_file(name, "main.c", MAIN);
 
