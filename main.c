@@ -149,6 +149,9 @@ int main(int argc, char* argv[]) {
   sprintf(buffer, "%s/%s", name, "include");
   make_dir(buffer, &st);
 
+  sprintf(buffer, "%s/%s", name, "test");
+  make_dir(buffer, &st);
+
   make_file(name, "CMakeLists.txt", CMAKE, name, cversion, name, name, name);
   make_file(name, ".gitignore", GITIGNORE);
   make_file(name, "main.c", MAIN);
